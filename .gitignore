@@ -1,0 +1,7 @@
+/env
+CMS_Backend/env.py
+__pycache__
+*.pyc
+.DS_Store
+.vscode/
+.idea/
