@@ -1,3 +1,5 @@
 Django==5.2.9
 flake8
 psycopg2-binary
+gunicorn
+
