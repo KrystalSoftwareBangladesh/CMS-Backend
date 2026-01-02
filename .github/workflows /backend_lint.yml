@@ -1,0 +1,39 @@
+name: Lint Code
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  lint:
+    name: Run Flake8 Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # Specify the Python version you need
+
+    - name: Install dependencies
+      run: |
+        cd backend
+        python -m pip install --upgrade pip
+        pip install flake8
+
+    - name: Run flake8 for critical errors
+      run: |
+        cd backend
+        flake8 ./ --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Run flake8 for complexity and style issues
+      run: |
+        cd backend
+        flake8 ./ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
