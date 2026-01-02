@@ -1,5 +1,6 @@
 /env
 CMS_Backend/env.py
+staticfiles/
 __pycache__
 *.pyc
 .DS_Store
