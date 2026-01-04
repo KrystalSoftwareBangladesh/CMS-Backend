@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ALLOWED_HOSTS_SETTINGS
 
 # Application definition
 
-INSTALLED_APPS = [
+BUILD_IN_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+THIRD_PARTY_APPS = [
+    # 'rest_framework.authtoken',
+    # 'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+]
+LOCAL_APPS = [
+    'user_api',
+]
+INSTALLED_APPS = BUILD_IN_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,3 +127,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'user_api.User'
