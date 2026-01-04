@@ -1,0 +1,54 @@
+name: Deploy at Dev Server
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 3. Copy code to server
+      - name: Upload backend code
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "."
+          target: ${{ secrets.SERVER_PATH }}
+          rm: false
+
+      # 4. SSH into server & deploy
+      - name: Deploy & restart services
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            set -e
+
+            cd ${{ secrets.SERVER_PATH }}
+
+            echo "🚀 Deploying commit: ${{ github.sha }}"
+
+            echo "🔄 Activating virtual environment"
+            source env/bin/activate
+
+            echo "📦 Installing dependencies"
+            pip install -r requirements.txt
+
+            echo "🗄️ Running migrations"
+            python manage.py migrate
+
+            echo "♻️ Restarting services"
+            sudo systemctl restart gunicorn-cms-rtl.service
+
+            echo "✅ Deployment completed successfully"
