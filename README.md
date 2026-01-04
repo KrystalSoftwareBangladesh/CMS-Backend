@@ -1,6 +1,11 @@
 # CMS Backend
 Backend project for CMS website.
 
+## Technologies
+- Python
+- Django
+- PostgreSQL
+
 ## Prerequisite
 - Python 3.10 or above
 
