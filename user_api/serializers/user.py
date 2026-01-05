@@ -45,54 +45,54 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
         return data
 
-    # def validate(self, data):
-    #     return data
+    def validate(self, data):
+        return data
 
-    # def _create_validation(self, data):
-    #     if not data.get('username', None):
-    #         data['username'] = data.get('email', None)
+    def _create_validation(self, data):
+        if not data.get('username', None):
+            data['username'] = data.get('email', None)
 
-    #     if not data.get('username', None):
-    #         raise serializers.ValidationError({"username": "Username required"})    # noqa
+        if not data.get('username', None):
+            raise serializers.ValidationError({"username": "Username required"})    # noqa
 
-    #     if not data.get('email', None):
-    #         raise serializers.ValidationError({"email": "Email required"})
+        if not data.get('email', None):
+            raise serializers.ValidationError({"email": "Email required"})
 
-    #     password = data.get('password', None)
-    #     confirm_password = data.get('confirm_password', None)
+        password = data.get('password', None)
+        confirm_password = data.get('confirm_password', None)
 
-    #     # if not password or not confirm_password:
-    #     #     raise serializers.ValidationError({
-    #     #         "password": "Password and Confirm Password both required",
-    #     #     })
+        # if not password or not confirm_password:
+        #     raise serializers.ValidationError({
+        #         "password": "Password and Confirm Password both required",
+        #     })
 
-    #     if password != confirm_password:
-    #         raise serializers.ValidationError({
-    #             "password": "Password do not match"
-    #         })
+        if password != confirm_password:
+            raise serializers.ValidationError({
+                "password": "Password do not match"
+            })
 
-    # def create(self, validated_data):
-    #     """
-    #         Create a new user and assign a role.
-    #     """
-    #     self._create_validation(data=validated_data)
+    def create(self, validated_data):
+        """
+            Create a new user and assign a role.
+        """
+        self._create_validation(data=validated_data)
 
-    #     validated_data.pop('confirm_password', None)
-    #     groups = validated_data.pop('groups', [])
+        validated_data.pop('confirm_password', None)
+        groups = validated_data.pop('groups', [])
 
-    #     password = validated_data.pop('password', None)
-    #     # user = User.objects.create_user(**validated_data)
-    #     user = User(**validated_data)
+        password = validated_data.pop('password', None)
+        # user = User.objects.create_user(**validated_data)
+        user = User(**validated_data)
 
-    #     if password:
-    #         user.set_password(password)
-    #     else:
-    #         user.set_unusable_password()
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
 
-    #     user.save()
-    #     user.groups.set(groups)
+        user.save()
+        user.groups.set(groups)
 
-    #     return user
+        return user
 
     # def update(self, instance, validated_data):
     #     validated_data.pop('password', None)

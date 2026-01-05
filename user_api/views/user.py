@@ -23,3 +23,12 @@ class UserListView(generics.ListAPIView):
     queryset = User.objects.filter(is_deleted=False)
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+        permissions.IsAdminUser
+    ]
