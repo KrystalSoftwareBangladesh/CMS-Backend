@@ -4,7 +4,7 @@
 # from rest_framework import status
 # from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView
-# from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView
 # from rest_framework_simplejwt.tokens import RefreshToken
 
 import logging
@@ -28,5 +28,15 @@ class LoginView(TokenObtainPairView):
 
         if response.status_code == 200:
             response.data["message"] = "Login successful"
+
+        return response
+
+
+class TokenRefreshView(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+
+        if response.status_code == 200:
+            response.data["message"] = "Access token refreshed successfully"
 
         return response
