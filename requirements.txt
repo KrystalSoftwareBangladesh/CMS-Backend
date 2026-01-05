@@ -2,4 +2,6 @@ Django==5.2.9
 flake8
 psycopg2-binary
 gunicorn
-
+djangorestframework==3.16.1
+djangorestframework-simplejwt
+django-cors-headers
