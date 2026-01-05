@@ -4,4 +4,5 @@ from user_api import views
 
 urlpatterns = [
     path('profile/', views.UserProfileView.as_view(), name='profile'),
+    path('list/', views.UserListView.as_view(), name='user-list'),
 ]
