@@ -15,6 +15,7 @@ from pathlib import Path
 from CMS_Backend.env import SECRET_KEY_SETTINGS
 from CMS_Backend.env import DATABASES_SETTINGS
 from CMS_Backend.env import ALLOWED_HOSTS_SETTINGS
+from CMS_Backend.env import CORS_ALLOWED_ORIGINS_SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,9 +45,9 @@ BUILD_IN_APPS = [
 ]
 THIRD_PARTY_APPS = [
     # 'rest_framework.authtoken',
-    # 'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'corsheaders',
 ]
 LOCAL_APPS = [
     'user_api',
@@ -54,6 +55,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = BUILD_IN_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,3 +140,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_api.User'
+
+CORS_ALLOWED_ORIGINS = CORS_ALLOWED_ORIGINS_SETTINGS
