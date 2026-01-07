@@ -16,6 +16,7 @@ from CMS_Backend.env import SECRET_KEY_SETTINGS
 from CMS_Backend.env import DATABASES_SETTINGS
 from CMS_Backend.env import ALLOWED_HOSTS_SETTINGS
 from CMS_Backend.env import CORS_ALLOWED_ORIGINS_SETTINGS
+from CMS_Backend.env import CSRF_TRUSTED_ORIGINS_SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -142,3 +143,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_api.User'
 
 CORS_ALLOWED_ORIGINS = CORS_ALLOWED_ORIGINS_SETTINGS
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS_SETTINGS
