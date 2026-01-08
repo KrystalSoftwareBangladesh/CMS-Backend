@@ -1,6 +1,6 @@
 from django.db import models
 
-from CMS_Backend.core.model import TimeStampedModel, SoftDeleteModel
+from CMS_Backend.core.models import TimeStampedModel, SoftDeleteModel
 
 
 class FAQ(TimeStampedModel, SoftDeleteModel):

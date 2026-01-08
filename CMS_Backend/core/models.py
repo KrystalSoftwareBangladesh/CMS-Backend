@@ -1,4 +1,4 @@
-# CMS_Backend/core/model.py
+# CMS_Backend/core/models.py
 from django.db import models
 
 from user_api.models import User
@@ -36,6 +36,10 @@ class TimeStampedModel(models.Model):
 
 
 class SoftDeleteModel(models.Model):
+    is_active = models.BooleanField(
+        default=True,
+        db_index=True
+    )
     deleted_at = models.DateTimeField(
         null=True,
         blank=True,
