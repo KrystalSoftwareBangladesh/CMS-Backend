@@ -23,4 +23,5 @@ urlpatterns = [
     path('categories/', include('category_api.urls')),
     path('faqs/', include('faq_api.urls')),
     path('social/', include('social_api.urls')),
+    path('testimonial/', include('testimonial_api.urls')),
 ]
