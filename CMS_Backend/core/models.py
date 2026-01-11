@@ -1,5 +1,6 @@
 # CMS_Backend/core/models.py
 from django.db import models
+from django.utils import timezone
 
 from user_api.models import User
 
@@ -48,3 +49,8 @@ class SoftDeleteModel(models.Model):
 
     class Meta:
         abstract = True
+
+    def soft_delete(self):
+        self.is_active = False
+        self.deleted_at = timezone.now()
+        self.save(update_fields=["is_active", "deleted_at"])
