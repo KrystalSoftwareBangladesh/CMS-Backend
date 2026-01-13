@@ -58,6 +58,7 @@ LOCAL_APPS = [
     'social_api',
     'testimonial_api',
     'service_api',
+    # 'project_api',
 ]
 INSTALLED_APPS = BUILD_IN_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
