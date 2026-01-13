@@ -10,5 +10,9 @@ class SocialPlatform(TimeStampedModel, SoftDeleteModel):
     icon_svg = models.TextField(null=True, blank=True)
     base_url = models.URLField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = "Social Platform"
+        verbose_name_plural = "Social Platforms"
+
     def __str__(self):
         return self.name
