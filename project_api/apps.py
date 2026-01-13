@@ -1,7 +1,6 @@
 from django.apps import AppConfig
 
 
-class FaqApiConfig(AppConfig):
+class ProjectApiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'faq_api'
-    verbose_name = 'FAQ Management'
+    name = 'project_api'
