@@ -50,6 +50,8 @@ THIRD_PARTY_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'django_filters',
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
 ]
 LOCAL_APPS = [
     'user_api',
@@ -101,6 +103,18 @@ WSGI_APPLICATION = 'CMS_Backend.wsgi.application'
 
 DATABASES = DATABASES_SETTINGS
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": f"CMS Backend API",
+    "DESCRIPTION": "API documentation for CMS system.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "displayRequestDuration": True,
+    },
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -113,7 +127,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",   # noqa
     "PAGE_SIZE": 10,
-    # "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
