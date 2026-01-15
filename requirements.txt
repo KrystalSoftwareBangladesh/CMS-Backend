@@ -7,3 +7,5 @@ djangorestframework-simplejwt
 django-cors-headers
 django-filter
 Pillow
+drf-spectacular
+drf-spectacular-sidecar
