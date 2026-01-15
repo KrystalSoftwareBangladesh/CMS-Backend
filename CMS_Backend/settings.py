@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'CMS_Backend.wsgi.application'
 DATABASES = DATABASES_SETTINGS
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": f"CMS Backend API",
+    "TITLE": "CMS Backend API",
     "DESCRIPTION": "API documentation for CMS system.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
