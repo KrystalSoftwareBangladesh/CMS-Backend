@@ -67,6 +67,13 @@ class News(TimeStampedModel, SoftDeleteModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+        if self.is_featured:
+            (
+                News.objects
+                .filter(is_featured=True)
+                .exclude(pk=self.pk)
+                .update(is_featured=False)
+            )
         super().save(*args, **kwargs)
 
     def __str__(self):
