@@ -29,7 +29,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     ]
 
     filterset_fields = [
-        "service",
+        "service_id",
         "is_featured",
         "status",
     ]
