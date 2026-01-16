@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from category_api.models import Category
+from service_api.models import Service
 from project_api.models import Project
 
 from service_api.serializers import ServiceSerializer
@@ -9,7 +9,7 @@ from service_api.serializers import ServiceSerializer
 class ProjectSerializer(serializers.ModelSerializer):
     service = ServiceSerializer(read_only=True)
     service_id = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(),
+        queryset=Service.objects.all(),
         source="service",
         write_only=True
     )
