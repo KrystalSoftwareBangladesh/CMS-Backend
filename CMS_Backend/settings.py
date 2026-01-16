@@ -125,7 +125,8 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",   # noqa
+    "DEFAULT_PAGINATION_CLASS": "CMS_Backend.core.pagination.Pagination",   # noqa
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",   # noqa
     "PAGE_SIZE": 10,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
