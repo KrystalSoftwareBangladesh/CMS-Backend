@@ -21,24 +21,17 @@ class News(TimeStampedModel, SoftDeleteModel):
         on_delete=models.PROTECT,
         related_name="news"
     )
-
     excerpt = models.CharField(
         max_length=500,
         help_text="Short description shown in news card"
     )
-
     content = models.TextField(
         help_text="Full news content"
     )
-
     cover_image = models.ImageField(
         upload_to="news/covers/"
     )
-
-    author_name = models.CharField(
-        max_length=100
-    )
-
+    author_name = models.CharField(max_length=100)
     read_time = models.PositiveSmallIntegerField(
         help_text="Estimated read time in minutes"
     )
@@ -47,7 +40,11 @@ class News(TimeStampedModel, SoftDeleteModel):
         default=False,
         db_index=True
     )
-
+    is_highlighted = models.BooleanField(
+        default=False,
+        db_index=True,
+        help_text="Highlighted news (multiple allowed)"
+    )
     status = models.BooleanField(
         default=True,
         db_index=True,
