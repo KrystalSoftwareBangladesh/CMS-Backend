@@ -11,7 +11,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = (
         Project.objects
         .filter(is_active=True)
-        .select_related("category")
+        .select_related("service")
     )
     serializer_class = ProjectSerializer
     permission_classes = [permissions.AllowAny]
@@ -25,11 +25,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
     search_fields = [
         "title",
         "short_description",
-        "category__name",
+        "service__name",
     ]
 
     filterset_fields = [
-        "category",
+        "service",
         "is_featured",
         "status",
     ]

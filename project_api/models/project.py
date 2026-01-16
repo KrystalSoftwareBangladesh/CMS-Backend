@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 from CMS_Backend.core.models import TimeStampedModel, SoftDeleteModel
 
-from category_api.models import Category
+from service_api.models import Service
 
 
 class Project(TimeStampedModel, SoftDeleteModel):
@@ -15,8 +15,10 @@ class Project(TimeStampedModel, SoftDeleteModel):
         blank=True,
         db_index=True
     )
-    category = models.ForeignKey(
-        Category,
+    service = models.ForeignKey(
+        Service,
+        null=True,
+        blank=True,
         on_delete=models.PROTECT,
         related_name="projects"
     )
