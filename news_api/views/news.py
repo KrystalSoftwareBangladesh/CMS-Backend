@@ -35,6 +35,7 @@ class NewsViewSet(viewsets.ModelViewSet):
     filterset_fields = [
         "category",
         "is_featured",
+        "is_highlighted",
         "status",
     ]
 
