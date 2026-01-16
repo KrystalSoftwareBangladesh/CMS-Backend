@@ -3,14 +3,14 @@ from rest_framework import serializers
 from category_api.models import Category
 from project_api.models import Project
 
-from category_api.serializers import CategorySerializer
+from service_api.serializers import ServiceSerializer
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
-    category_id = serializers.PrimaryKeyRelatedField(
+    service = ServiceSerializer(read_only=True)
+    service_id = serializers.PrimaryKeyRelatedField(
         queryset=Category.objects.all(),
-        source="category",
+        source="service",
         write_only=True
     )
 

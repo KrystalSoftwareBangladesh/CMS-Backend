@@ -8,7 +8,7 @@ class ProjectAdmin(admin.ModelAdmin):
     # List page
     list_display = (
         "title",
-        "category",
+        "service",
         "is_featured",
         "status",
         "order",
@@ -16,7 +16,7 @@ class ProjectAdmin(admin.ModelAdmin):
         "updated_at",
     )
     list_filter = (
-        "category",
+        "service",
         "is_featured",
         "status",
         "created_at",
@@ -39,7 +39,7 @@ class ProjectAdmin(admin.ModelAdmin):
                 "fields": (
                     "title",
                     "slug",
-                    "category",
+                    "service",
                     "short_description",
                     "description",
                     "cover_image",
@@ -82,7 +82,7 @@ class ProjectAdmin(admin.ModelAdmin):
     )
 
     # Performance & UX
-    list_select_related = ("category",)
+    list_select_related = ("service",)
     list_editable = ("order", "is_featured", "status")
     save_on_top = True
 
