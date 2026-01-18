@@ -1,11 +1,13 @@
 from rest_framework import viewsets, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+from CMS_Backend.core.permission import PublicListPermissionMixin
+
 from service_api.models import Service
 from service_api.serializers import ServiceSerializer
 
 
-class ServiceViewSet(viewsets.ModelViewSet):
+class ServiceViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     queryset = Service.objects.filter(is_active=True)
     serializer_class = ServiceSerializer
     permission_classes = [permissions.IsAdminUser]

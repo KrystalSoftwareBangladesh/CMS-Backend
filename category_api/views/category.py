@@ -1,14 +1,16 @@
 # category_api/views/category.py
 from django_filters.rest_framework import DjangoFilterBackend
 
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
+
+from CMS_Backend.core.permission import PublicListPermissionMixin
 
 from category_api.models import Category
 from category_api.serializers import CategorySerializer
 
 
-class CategoryViewSet(ModelViewSet):
+class CategoryViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.filter(
         deleted_at__isnull=True
@@ -39,15 +41,6 @@ class CategoryViewSet(ModelViewSet):
 
     ordering = ["name"]
 
-    # ---------------------------
-    # QUERY OPTIMIZATION
-    # ---------------------------
     def get_queryset(self):
         qs = super().get_queryset()
-
-        # Optional: restrict by content_type query param
-        # content_type = self.request.query_params.get("content_type")
-        # if content_type:
-        #     qs = qs.filter(content_type=content_type)
-
         return qs

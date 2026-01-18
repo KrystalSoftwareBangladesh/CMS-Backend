@@ -5,11 +5,13 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
 
+from CMS_Backend.core.permission import PublicListPermissionMixin
+
 from news_api.models import News
 from news_api.serializers import NewsSerializer
 
 
-class NewsViewSet(viewsets.ModelViewSet):
+class NewsViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     queryset = (
         News.objects
         .filter(is_active=True)

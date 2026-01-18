@@ -1,4 +1,6 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, filters
+
+from CMS_Backend.core.permission import PublicListPermissionMixin
 
 from location_api.models import OfficeLocation
 
@@ -8,7 +10,7 @@ from location_api.serializers import (
 )
 
 
-class OfficeLocationViewSet(viewsets.ModelViewSet):
+class OfficeLocationViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     lookup_field = "slug"
     filter_backends = [
         filters.SearchFilter,
@@ -30,10 +32,10 @@ class OfficeLocationViewSet(viewsets.ModelViewSet):
 
     ordering = ["order"]
 
-    def get_permissions(self):
-        if self.action in ["list", "retrieve"]:
-            return [permissions.AllowAny()]
-        return [permissions.IsAdminUser()]
+    # def get_permissions(self):
+    #     if self.action in ["list", "retrieve"]:
+    #         return [permissions.AllowAny()]
+    #     return [permissions.IsAdminUser()]
 
     def get_serializer_class(self):
         # if self.action == "list":
