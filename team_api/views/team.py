@@ -1,12 +1,14 @@
 from rest_framework import viewsets, permissions, filters
 from django.db.models import Prefetch
 
+from CMS_Backend.core.permission import PublicListPermissionMixin
+
 from team_api.models import TeamMember, TeamMemberSocial
 
 from team_api.serializers import TeamMemberSerializer
 
 
-class TeamMemberViewSet(viewsets.ModelViewSet):
+class TeamMemberViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     """
         Team Member CRUD + Public Read API
     """

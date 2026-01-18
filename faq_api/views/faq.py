@@ -1,14 +1,17 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 from django_filters.rest_framework import DjangoFilterBackend
 from django.utils import timezone
 
+from CMS_Backend.core.permission import PublicListPermissionMixin
+
 from faq_api.models import FAQ
+
 from faq_api.serializers import FAQSerializer
 
 
-class FAQViewSet(ModelViewSet):
+class FAQViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     serializer_class = FAQSerializer
 
     queryset = FAQ.objects.filter(

@@ -2,12 +2,14 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.filters import OrderingFilter, SearchFilter
 
+from CMS_Backend.core.permission import PublicListPermissionMixin
+
 from testimonial_api.models import Testimonial
 
 from testimonial_api.serializers import TestimonialSerializer
 
 
-class TestimonialViewSet(ModelViewSet):
+class TestimonialViewSet(PublicListPermissionMixin, ModelViewSet):
     serializer_class = TestimonialSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
