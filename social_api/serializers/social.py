@@ -22,8 +22,8 @@ class SocialPlatformSerializer(serializers.ModelSerializer):
         return value.lower().strip()
 
     def validate_icon_svg(self, value):
-        if value and not value.strip().startswith("<svg"):
+        if value and not value.strip().startswith(("M", "m")):
             raise serializers.ValidationError(
-                "icon_svg must be a valid SVG markup."
+                "Icon SVG must be a valid SVG path (d attribute)."
             )
         return value
