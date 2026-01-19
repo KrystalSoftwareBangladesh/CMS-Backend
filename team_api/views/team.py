@@ -9,9 +9,6 @@ from team_api.serializers import TeamMemberSerializer
 
 
 class TeamMemberViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
-    """
-        Team Member CRUD + Public Read API
-    """
     serializer_class = TeamMemberSerializer
     lookup_field = "slug"
 
@@ -35,20 +32,11 @@ class TeamMemberViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
     ordering = ["order"]
 
     def get_permissions(self):
-        """
-        - Read: Public
-        - Write: Admin only
-        """
         if self.action in ["list", "retrieve"]:
             return [permissions.AllowAny()]
         return [permissions.IsAdminUser()]
 
     def get_queryset(self):
-        """
-        Queryset rules:
-        - Public: only active + visible
-        - Admin: all
-        """
         qs = TeamMember.objects.prefetch_related(
             Prefetch(
                 "social_profiles",
@@ -66,7 +54,4 @@ class TeamMemberViewSet(PublicListPermissionMixin, viewsets.ModelViewSet):
         )
 
     def perform_destroy(self, instance):
-        """
-        Soft delete instead of hard delete
-        """
         instance.soft_delete()
