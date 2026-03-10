@@ -9,3 +9,4 @@ django-filter
 Pillow
 drf-spectacular
 drf-spectacular-sidecar
+mysqlclient
